@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+
+    <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+
+        tr:nth-child(odd) {
+          background-color: #FFF;
+        }
+
+        a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #26718a;
+        }
+
+        img {
+            width: 20px;
+            height: 20px;
+            alignment: center;
+            margin: auto;
+        }
+        </style>
+
+
+</head>
+<body style="background-color: whitesmoke;">
+<div style="text-align: center; margin: auto; width: 100%;">
+    <h2>Student List</h2>
+</div>
+<hr>
+
+    <div style="width: 70%; height: auto; margin: auto; margin-top: 50px; padding: 10px;"> 
+        <table>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>National Code</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+
+            <!-- Data -->
+            <tr th:each="student: ${students}">
+                <td th:text="${student.firstName}" />
+                <td th:text="${student.lastName}" />
+                <td th:text="${student.nationalCode}" />
+                <td>
+                    <a th:href="@{/update-student/} + ${student.id}">
+                        <img src="img/edit.svg">
+                    </a>
+                </td>
+                <td>
+                    <a th:href="@{/delete/} + ${student.id}">
+                        <img src="img/remove.svg">
+                    </a>
+                </td>
+            </tr>
+        </table>
+        <p><a href="/add-student"> Add new student </a></p>
+    </div>
+</body>
+</html>
