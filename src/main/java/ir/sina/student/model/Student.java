@@ -19,7 +19,7 @@ public class Student {
     @Column(name = "national_code")
     private long nationalCode;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH})
     @JoinColumn(name = "major_id")
     private Major major;
 
@@ -78,6 +78,7 @@ public class Student {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", nationalCode=" + nationalCode +
+                ", major=" + major.toString() +
                 '}';
     }
 }

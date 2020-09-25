@@ -16,7 +16,7 @@ public class Major {
     private String title;
 
     @OneToMany(mappedBy = "major",
-            cascade = CascadeType.PERSIST)
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH})
     private List<Student> students;
 
     public Major() {
@@ -50,4 +50,12 @@ public class Major {
         this.students = students;
     }
 
+    @Override
+    public String toString() {
+        return "Major{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", students=" + students +
+                '}';
+    }
 }

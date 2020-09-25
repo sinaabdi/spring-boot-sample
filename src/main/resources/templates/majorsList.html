@@ -44,39 +44,29 @@
 </head>
 <body style="background-color: whitesmoke;">
 <div style="text-align: center; margin: auto; width: 100%;">
-    <h2>Student List</h2>
+    <h2>Major List</h2>
 </div>
 <hr>
 
     <div style="width: 70%; height: auto; margin: auto; margin-top: 50px; padding: 10px;"> 
         <table>
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>National Code</th>
-                <th>Edit</th>
+                <th>Title</th>
                 <th>Delete</th>
             </tr>
 
             <!-- Data -->
-            <tr th:each="student: ${students}">
-                <td th:text="${student.firstName}" />
-                <td th:text="${student.lastName}" />
-                <td th:text="${student.nationalCode}" />
-                <td>
-                    <a th:href="@{/update-student/} + ${student.id}">
-                        <img src="img/edit.svg">
-                    </a>
-                </td>
-                <td>
-                    <a th:href="@{/delete/} + ${student.id}">
+            <tr th:each="major: ${majors}">
+                <td th:text="${major.title}" />
+                <td style="width: 50px">
+                    <a th:href="@{/major/delete/} + ${major.id}">
                         <img src="img/remove.svg">
                     </a>
                 </td>
             </tr>
         </table>
-        <p><a href="/add-student"> Add new student </a></p>
-        <p><a href="/major/list"> Major </a></p>
+        <p><a href="/"> Home Page </a></p>
+        <p><a href="/add-major"> Add new Major </a></p>
     </div>
 </body>
 </html>

@@ -1,22 +1,21 @@
 package ir.sina.student.controller;
+import ir.sina.student.model.Major;
 import ir.sina.student.model.Student;
+import ir.sina.student.service.MajorService;
 import ir.sina.student.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-
 @Controller
 public class StudentController {
-
+    @Autowired
     private StudentService studentService;
 
     @Autowired
-    public StudentController(StudentService studentService) {
-        this.studentService = studentService;
-    }
+    private MajorService majorService;
+
 
     @RequestMapping("/")
     public String index(Model model) {
@@ -27,12 +26,13 @@ public class StudentController {
     @RequestMapping("/add-student")
     public String addStudentPage(Model model, Student student) {
         model.addAttribute("student", student);
+        model.addAttribute("majors", majorService.findAll());
         return "addStudent.html";
 
     }
 
     @PostMapping("/add")
-    public String addStudentPage(@ModelAttribute("student") Student student, HttpServletRequest request, Model model) {
+    public String addStudentPage(@ModelAttribute("student") Student student, Model model) {
         studentService.save(student);
 
         model.addAttribute("students", studentService.findAll());
@@ -51,7 +51,11 @@ public class StudentController {
     }
 
     @PostMapping("/update")
-    public String update(@ModelAttribute("student") Student student, Model model) {
+    public String update(@ModelAttribute("student") Student student, @ModelAttribute("major") Major major, Model model) {
+        System.out.println(major.toString());
+        System.out.println(student.toString());
+
+        student.setMajor(major);
         studentService.save(student);
 
         model.addAttribute("students", studentService.findAll());

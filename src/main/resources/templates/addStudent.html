@@ -59,6 +59,11 @@
             <input type="text" id="ncode" name="ncode" placeholder="National Code.." th:field="${student.nationalCode}"/>
 
 
+            <label for="major">Choose a Major:</label>
+
+            <select name="major" id="major" th:field="${student.major}" >
+                <option th:each="major:${majors}" th:value="${major}" th:text="${major.title}"></option>
+            </select>
 
             <input type="submit" value="Register" />
         </form>
