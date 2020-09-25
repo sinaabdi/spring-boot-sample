@@ -19,6 +19,10 @@ public class Student {
     @Column(name = "national_code")
     private long nationalCode;
 
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "major_id")
+    private Major major;
+
     public Student(){}
 
     public Student(String firstName, String lastName, long nationalCode) {
@@ -59,6 +63,13 @@ public class Student {
         this.nationalCode = nationalCode;
     }
 
+    public Major getMajor() {
+        return major;
+    }
+
+    public void setMajor(Major major) {
+        this.major = major;
+    }
 
     @Override
     public String toString() {
