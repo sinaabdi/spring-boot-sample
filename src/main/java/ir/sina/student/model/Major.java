@@ -15,9 +15,10 @@ public class Major {
     @Column(name = "title")
     private String title;
 
+
     @OneToMany(mappedBy = "major",
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH})
-    private List<Student> students;
+            cascade = CascadeType.ALL)
+    private transient List<Student> students;
 
     public Major() {
     }
@@ -49,6 +50,7 @@ public class Major {
     public void setStudents(List<Student> students) {
         this.students = students;
     }
+
 
     @Override
     public String toString() {

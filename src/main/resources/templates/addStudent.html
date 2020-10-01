@@ -46,7 +46,7 @@
 <hr>
 
     <div style="width: 70%; height: auto; margin: auto; margin-top: 50px; padding: 10px;">
-        <form th:action="@{/update}" th:object="${student}" method="post">
+        <form th:action="@{/update}" th:object="${student}" method="get">
 <!--            <input type="hidden" th:field="0">-->
 
             <label for="fname">First Name</label>
@@ -62,7 +62,7 @@
             <label for="major">Choose a Major:</label>
 
             <select name="major" id="major" th:field="${student.major}" >
-                <option th:each="major:${majors}" th:value="${major}" th:text="${major.title}"></option>
+                <option th:each="major:${majors}" th:value="${major.id}" th:text="${major.title}" ></option>
             </select>
 
             <input type="submit" value="Register" />
