@@ -17,7 +17,7 @@ public class Major {
 
 
     @OneToMany(mappedBy = "major",
-            cascade = CascadeType.ALL)
+            cascade = CascadeType.REMOVE)
     private transient List<Student> students;
 
     public Major() {

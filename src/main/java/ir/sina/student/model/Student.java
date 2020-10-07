@@ -19,7 +19,7 @@ public class Student {
     @Column(name = "national_code")
     private long nationalCode;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "major_id")
     private Major major;
 

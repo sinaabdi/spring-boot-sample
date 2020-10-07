@@ -1,10 +1,9 @@
 package ir.sina.student.service;
 
-import ir.sina.student.dao.MajorDAO;
 import ir.sina.student.model.Major;
+import ir.sina.student.repository.MajorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -12,30 +11,26 @@ import java.util.List;
 public class MajorServiceImpl implements MajorService {
 
     @Autowired
-    private MajorDAO majorDAO;
+    private MajorRepository majorRepository;
 
 
     @Override
-    @Transactional
     public List<Major> findAll() {
-        return majorDAO.findAll();
+        return majorRepository.findAll();
     }
 
     @Override
-    @Transactional
     public Major getById(int id) {
-        return majorDAO.getById(id);
+        return majorRepository.getById(id);
     }
 
     @Override
-    @Transactional
     public void save(Major major) {
-        majorDAO.save(major);
+        majorRepository.save(major);
     }
 
     @Override
-    @Transactional
     public void deleteById(int id) {
-        majorDAO.deleteById(id);
+        majorRepository.deleteById(id);
     }
 }
